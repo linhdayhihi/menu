@@ -440,7 +440,7 @@ document.querySelectorAll(".card-wrapper").forEach(wrapper => {
     wrapper.addEventListener("touchstart", function (event) {
         startX = event.touches[0].clientX;
         event.preventDefault(); 
-    });
+    }, { passive: false });
 
     wrapper.addEventListener("touchend", function (event) {
         let endX = event.changedTouches[0].clientX;
@@ -450,7 +450,7 @@ document.querySelectorAll(".card-wrapper").forEach(wrapper => {
             prevSlide(wrapper);
         }
         event.preventDefault(); 
-    });
+    }, { passive: false });
 });
 
 // Khởi tạo ban đầu
