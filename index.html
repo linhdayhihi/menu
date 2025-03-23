@@ -265,6 +265,8 @@
 
 
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
 <script>
     const menuItemsXua = [
         {
@@ -435,23 +437,18 @@ function prevSlide(wrapper) {
     updateSlider(wrapper);
 }
 
-// Xử lý sự kiện touch để chuyển slide
 document.querySelectorAll(".card-wrapper").forEach(wrapper => {
-    wrapper.addEventListener("touchstart", function (event) {
-        startX = event.touches[0].clientX;
-        event.preventDefault(); 
-    }, { passive: false });
+    let hammer = new Hammer(wrapper);
 
-    wrapper.addEventListener("touchend", function (event) {
-        let endX = event.changedTouches[0].clientX;
-        if (startX - endX > 50) {
-            nextSlide(wrapper);
-        } else if (endX - startX > 50) {
-            prevSlide(wrapper);
-        }
-        event.preventDefault(); 
-    }, { passive: false });
+    hammer.on("swipeleft", () => {
+        nextSlide(wrapper);
+    });
+
+    hammer.on("swiperight", () => {
+        prevSlide(wrapper);
+    });
 });
+
 
 // Khởi tạo ban đầu
 document.addEventListener("DOMContentLoaded", function () {
