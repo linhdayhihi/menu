@@ -438,6 +438,7 @@ function prevSlide(wrapper) {
 document.querySelectorAll(".card-wrapper").forEach(wrapper => {
     wrapper.addEventListener("touchstart", function (event) {
         startX = event.touches[0].clientX;
+        event.preventDefault(); 
     });
 
     wrapper.addEventListener("touchend", function (event) {
@@ -447,6 +448,7 @@ document.querySelectorAll(".card-wrapper").forEach(wrapper => {
         } else if (endX - startX > 50) {
             prevSlide(wrapper);
         }
+        event.preventDefault(); 
     });
 });
 
